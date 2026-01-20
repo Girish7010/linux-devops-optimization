@@ -176,7 +176,7 @@ fi
 ## 7. Production‑Safe Hardening
 
 ### 7.1 Automatic Security Updates
-```bash
+```bash.
 sudo apt install -y unattended-upgrades
 sudo dpkg-reconfigure unattended-upgrades
 ```
