@@ -24,4 +24,4 @@ jobs:
         run: python3 -m json.tool configs/docker/daemon.json > /dev/null
 
       - name: Installer dry-run
-        run: sudo ./install.sh --dry-run
+        run: sudo bash install.sh --dry-run
