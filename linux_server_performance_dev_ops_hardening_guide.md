@@ -5,6 +5,8 @@
 > **Purpose:** Make Linux servers fast, stable, secure, and production‑ready  
 > **Use case:** STG / DEV / EC2 / Personal Servers
 
+> **Automated version:** everything in this guide (plus alerts to Slack/Telegram, backups, security audit) is packaged in this repo. Run `sudo bash install.sh --dry-run` — see the [README](README.md).
+
 ---
 
 ## 1. Overview
@@ -36,11 +38,11 @@ find /var/log -type f -name "*.log" -mtime +7 -exec truncate -s 0 {} \;
 journalctl --vacuum-time=7d
 
 # Clean temporary files
-rm -rf /tmp/*
-rm -rf /var/tmp/*
+# Only files not accessed for 3+ days (rm -rf /tmp/* can break running apps' sockets/locks)
+find /tmp /var/tmp -xdev -type f -atime +3 -delete
 
 # Docker cleanup
-docker system prune -af --volumes
+docker system prune -af --filter "until=168h"   # never add --volumes: it deletes database data
 
 # Disk usage check
 df -h /
@@ -219,15 +221,8 @@ sudo systemctl start fail2ban
 
 ---
 
-## 9. GitHub Structure (Recommended)
-```
-linux-devops-optimization/
-├── README.md
-├── scripts/
-│   ├── cleanup.sh
-│   ├── docker_cleanup.sh
-│   └── system_alert.sh
-```
+## 9. GitHub Structure
+See the [README](README.md#repository-structure) for the full structure: `install.sh`, `scripts/`, `configs/`, `docs/`.
 
 ---
 
