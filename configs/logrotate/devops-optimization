@@ -1,0 +1,10 @@
+# Installed to /etc/logrotate.d/devops-optimization
+/var/log/devops-optimization/*.log /var/log/system_alert.log {
+    weekly
+    rotate 4
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}
