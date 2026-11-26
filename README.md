@@ -172,10 +172,6 @@ Logs: `/var/log/devops-optimization/` (rotated weekly).
 - [ ] Prometheus `node_exporter` + Grafana dashboard option
 - [ ] CloudWatch agent config for memory & disk metrics on EC2
 
-## LinkedIn
-
-Suggested title: *How I Optimized a Linux Server for Performance, Stability, and DevOps Best Practices*
-Tags: `#DevOps #Linux #Docker #Cloud #AWS #SRE #PerformanceOptimization`
 
 ## Contributing
 
