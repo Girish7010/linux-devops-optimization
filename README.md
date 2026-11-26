@@ -4,7 +4,7 @@
 
 **Production-ready Linux server optimization, monitoring and hardening toolkit — installable with one command.**
 
-Author: **Girish Burade** — DevOps / Cloud Engineer
+Author: **Girish Burade** — DevOps / Cloud Engineer<br>
 Use case: STG / DEV / PROD servers, AWS EC2, GCP, Azure VMs, personal Linux servers (Ubuntu/Debian, RHEL/Rocky/Amazon Linux)
 
 > Full write-up of the approach: [Linux Server Performance & DevOps Hardening Guide](linux_server_performance_dev_ops_hardening_guide.md)
