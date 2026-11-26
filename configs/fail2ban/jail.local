@@ -1,0 +1,17 @@
+# Installed to /etc/fail2ban/jail.local (only if it does not already exist)
+[DEFAULT]
+bantime  = 1h
+findtime = 10m
+maxretry = 5
+# Repeat offenders get longer bans (1h, 2h, 4h ... up to 1 week)
+bantime.increment = true
+bantime.maxtime   = 1w
+# systemd backend works on modern distros where /var/log/auth.log may not exist
+backend  = systemd
+# Add your office / VPN IPs here so you never ban yourself
+ignoreip = 127.0.0.1/8 ::1
+
+[sshd]
+enabled = true
+port    = ssh
+mode    = aggressive
