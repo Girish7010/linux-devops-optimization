@@ -9,6 +9,18 @@ Use case: STG / DEV / PROD servers, AWS EC2, GCP, Azure VMs, personal Linux serv
 
 > Full write-up of the approach: [Linux Server Performance & DevOps Hardening Guide](linux_server_performance_dev_ops_hardening_guide.md)
 
+## Why use this?
+
+Most servers break for boring reasons: a disk fills up with logs, Docker images pile up, memory runs out at 2 AM, or SSH is left open to password brute-force. This repo handles those in **one install**:
+
+- **Fewer 2 AM pages** — get a Slack/Telegram alert *before* the disk hits 100%, plus a "resolved" message when it recovers
+- **Faster incident response** — one command gives you a full health snapshot instead of running 20 commands by hand
+- **Security baseline in minutes** — audit score + SSH, fail2ban and kernel hardening you can apply safely
+- **Safe by default** — dry-run first, automatic backups of every changed file, one-command uninstall, never deletes Docker volumes
+- **Plain Bash** — no agents, no dependencies, works on Ubuntu/Debian and RHEL-family servers, EC2 included
+
+**Good for:** DevOps/SRE engineers, developers running their own VPS or EC2, and anyone setting up a staging server who wants it production-ready on day one.
+
 ---
 
 ## What you get
@@ -74,6 +86,24 @@ Optional SSH hardening (only after confirming you can log in with an SSH key):
 ```bash
 sudo bash install.sh --with-ssh-hardening
 # keep your current session open and test a NEW ssh login before closing it
+```
+
+## Sample output
+
+```text
+$ sudo /opt/devops-optimization/scripts/security_audit.sh
+== SSH ==
+[PASS] Root login with password disabled (prohibit-password)
+[PASS] Password authentication disabled
+[PASS] MaxAuthTries = 3
+== Firewall ==
+[WARN] No host firewall detected (OK only if a cloud security group is strictly configured)
+== Brute-force protection ==
+[PASS] fail2ban running
+...
+==============================================
+ PASS: 17   WARN: 3   FAIL: 0   SCORE: 85%
+==============================================
 ```
 
 ### Installer options
